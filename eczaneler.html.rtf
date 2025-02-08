@@ -1,0 +1,105 @@
+<div class="eczane-container">
+    <h1>Eczanelerimiz</h1>
+    <p>Size en yakın eczaneyi bulun!</p>
+    
+    <input type="text" id="eczaneSearch" placeholder="Eczane ara..." onkeyup="searchEczane()">
+    
+    <table id="eczaneTable">
+        <thead>
+            <tr>
+                <th>Eczane Adı</th>
+                <th>Şehir</th>
+                <th>Adres</th>
+                <th>Telefon</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr>
+                <td>Örnek Eczane 1</td>
+                <td>İstanbul</td>
+                <td>Bağdat Caddesi No:12</td>
+                <td>+90 212 123 45 67</td>
+            </tr>
+            <tr>
+                <td>Örnek Eczane 2</td>
+                <td>Ankara</td>
+                <td>Kızılay Meydanı No:5</td>
+                <td>+90 312 765 43 21</td>
+            </tr>
+            <tr>
+                <td>Örnek Eczane 3</td>
+                <td>İzmir</td>
+                <td>Alsancak Mahallesi No:8</td>
+                <td>+90 232 456 78 90</td>
+            </tr>
+        </tbody>
+    </table>
+</div>
+
+<style>
+.eczane-container {
+    text-align: center;
+    font-family: Arial, sans-serif;
+    padding: 20px;
+}
+
+h1 {
+    font-size: 2rem;
+    color: #333;
+}
+
+p {
+    color: #666;
+}
+
+input {
+    width: 50%;
+    padding: 10px;
+    margin: 10px 0;
+    font-size: 1rem;
+    border: 1px solid #ddd;
+    border-radius: 5px;
+}
+
+table {
+    width: 100%;
+    border-collapse: collapse;
+    margin-top: 20px;
+}
+
+th, td {
+    border: 1px solid #ddd;
+    padding: 10px;
+    text-align: left;
+}
+
+th {
+    background-color: #f4f4f4;
+}
+
+tr:hover {
+    background-color: #f1f1f1;
+}
+</style>
+
+<script>
+function searchEczane() {
+    var input, filter, table, tr, td, i, txtValue;
+    input = document.getElementById("eczaneSearch");
+    filter = input.value.toUpperCase();
+    table = document.getElementById("eczaneTable");
+    tr = table.getElementsByTagName("tr");
+
+    for (i = 1; i < tr.length; i++) {
+        td = tr[i].getElementsByTagName("td")[0]; 
+        if (td) {
+            txtValue = td.textContent || td.innerText;
+            if (txtValue.toUpperCase().indexOf(filter) > -1) {
+                tr[i].style.display = "";
+            } else {
+                tr[i].style.display = "none";
+            }
+        }
+    }
+}
+</script>
