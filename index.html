@@ -19,7 +19,7 @@
 
         <input type="text" id="eczaneSearch" placeholder="Bayi adı ara..." onkeyup="filterEczane()">
 
-        <button onclick="resetFilters()">Filtreleri Sıfırla</button>
+        <button onclick="resetFilters()">Sıfırla</button>
     </div>
 
     <div id="eczaneList" class="eczane-list">
@@ -51,8 +51,8 @@
 
 <style>
     body {
-        font-family: Arial, sans-serif;
-        background-color: #f9f9f9;
+        font-family: 'Poppins', sans-serif;
+        background-color: #f4f4f8;
         color: #333;
         text-align: center;
     }
@@ -61,56 +61,70 @@
         margin: auto;
         background: white;
         padding: 20px;
-        border-radius: 10px;
-        box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.1);
+        border-radius: 12px;
+        box-shadow: 0px 5px 15px rgba(0, 0, 0, 0.1);
+    }
+    h1 {
+        font-size: 2rem;
+        font-weight: 600;
+        color: #222;
     }
     .filters {
         display: flex;
         justify-content: center;
         flex-wrap: wrap;
-        gap: 10px;
-        margin-bottom: 15px;
+        gap: 12px;
+        margin-bottom: 20px;
     }
     select, input, button {
-        padding: 10px;
+        padding: 12px;
         font-size: 1rem;
         border: 1px solid #ddd;
-        border-radius: 5px;
+        border-radius: 8px;
+        transition: 0.3s;
     }
     button {
-        background-color: #007bff;
+        background-color: #4CAF50;
         color: white;
         border: none;
         cursor: pointer;
     }
     button:hover {
-        background-color: #0056b3;
+        background-color: #45a049;
     }
     .eczane-list {
         display: flex;
         flex-wrap: wrap;
-        gap: 15px;
+        gap: 20px;
         justify-content: center;
     }
     .eczane-card {
         background: white;
         padding: 15px;
-        border-radius: 10px;
-        box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.1);
-        width: 250px;
+        border-radius: 12px;
+        box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.1);
+        width: 280px;
         text-align: left;
-        transition: transform 0.3s;
+        transition: transform 0.3s, box-shadow 0.3s;
     }
     .eczane-card:hover {
-        transform: scale(1.05);
+        transform: translateY(-5px);
+        box-shadow: 0px 10px 20px rgba(0, 0, 0, 0.15);
     }
     .eczane-card h3 {
         margin-top: 0;
-        color: #007bff;
+        color: #4CAF50;
+        font-size: 1.3rem;
+    }
+    .eczane-card p {
+        margin: 5px 0;
+        color: #555;
+        font-size: 0.9rem;
     }
     .eczane-card a {
-        color: #007bff;
+        color: #4CAF50;
         text-decoration: none;
+        font-weight: 600;
     }
     .eczane-card a:hover {
         text-decoration: underline;
