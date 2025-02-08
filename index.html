@@ -1,179 +1,109 @@
-<!DOCTYPE html>
-<html lang="tr">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Eczanelerimiz</title>
-    <style>
-        body {
-            font-family: Arial, sans-serif;
-            text-align: center;
-            background-color: #f4f4f4;
-            margin: 0;
-            padding: 20px;
-        }
-        .container {
-            max-width: 900px;
-            margin: auto;
-            background: white;
-            padding: 20px;
-            border-radius: 10px;
-            box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.1);
-        }
-        h1 {
-            color: #333;
-            margin-bottom: 10px;
-        }
-        p {
-            color: #666;
-            font-size: 1.1rem;
-        }
-        .filters {
-            display: flex;
-            flex-wrap: wrap;
-            justify-content: center;
-            gap: 10px;
-            margin-bottom: 15px;
-        }
-        select, input {
-            padding: 10px;
-            font-size: 1rem;
-            border: 1px solid #ddd;
-            border-radius: 5px;
-        }
-        table {
-            width: 100%;
-            border-collapse: collapse;
-            margin-top: 20px;
-        }
-        th, td {
-            border: 1px solid #ddd;
-            padding: 10px;
-            text-align: left;
-        }
-        th {
-            background-color: #007bff;
-            color: white;
-        }
-        tr:nth-child(even) {
-            background-color: #f9f9f9;
-        }
-        tr:hover {
-            background-color: #e9ecef;
-        }
-        @media (max-width: 600px) {
-            .filters {
-                flex-direction: column;
-            }
-            table, thead, tbody, th, td, tr {
-                display: block;
-                width: 100%;
-            }
-            tr {
-                margin-bottom: 10px;
-                border-bottom: 2px solid #ddd;
-            }
-            td {
-                text-align: right;
-                padding-left: 50%;
-                position: relative;
-            }
-            td:before {
-                content: attr(data-label);
-                position: absolute;
-                left: 10px;
-                font-weight: bold;
-                text-align: left;
-            }
-        }
-    </style>
-</head>
-<body>
-    <div class="container">
-        <h1>Eczanelerimiz</h1>
-        <p>Size en yakın eczaneyi bulun!</p>
+<div class="eczane-container">
+    <h1>Eczanelerimiz</h1>
+    <p>Size en yakın eczaneyi bulun!</p>
 
-        <div class="filters">
-            <select id="cityFilter" onchange="filterEczane()">
-                <option value="">İl Seçiniz</option>
-                <option value="İstanbul">İstanbul</option>
-                <option value="Ankara">Ankara</option>
-                <option value="İzmir">İzmir</option>
-            </select>
+    <div class="eczane-filters">
+        <select id="cityFilter" onchange="filterEczane()">
+            <option value="">İl Seçiniz</option>
+            <option value="İstanbul">İstanbul</option>
+            <option value="Ankara">Ankara</option>
+            <option value="İzmir">İzmir</option>
+        </select>
 
-            <select id="districtFilter" onchange="filterEczane()">
-                <option value="">İlçe Seçiniz</option>
-                <option value="Kadıköy">Kadıköy</option>
-                <option value="Kızılay">Kızılay</option>
-                <option value="Alsancak">Alsancak</option>
-            </select>
+        <select id="districtFilter" onchange="filterEczane()">
+            <option value="">İlçe Seçiniz</option>
+            <option value="Kadıköy">Kadıköy</option>
+            <option value="Kızılay">Kızılay</option>
+            <option value="Alsancak">Alsancak</option>
+        </select>
 
-            <input type="text" id="eczaneSearch" placeholder="Eczane adı ara..." onkeyup="filterEczane()">
-        </div>
-
-        <table id="eczaneTable">
-            <thead>
-                <tr>
-                    <th>Eczane Adı</th>
-                    <th>İl</th>
-                    <th>İlçe</th>
-                    <th>Adres</th>
-                    <th>Telefon</th>
-                </tr>
-            </thead>
-            <tbody>
-                <tr>
-                    <td data-label="Eczane Adı">Örnek Eczane 1</td>
-                    <td data-label="İl">İstanbul</td>
-                    <td data-label="İlçe">Kadıköy</td>
-                    <td data-label="Adres">Bağdat Caddesi No:12</td>
-                    <td data-label="Telefon">+90 212 123 45 67</td>
-                </tr>
-                <tr>
-                    <td data-label="Eczane Adı">Örnek Eczane 2</td>
-                    <td data-label="İl">Ankara</td>
-                    <td data-label="İlçe">Kızılay</td>
-                    <td data-label="Adres">Kızılay Meydanı No:5</td>
-                    <td data-label="Telefon">+90 312 765 43 21</td>
-                </tr>
-                <tr>
-                    <td data-label="Eczane Adı">Örnek Eczane 3</td>
-                    <td data-label="İl">İzmir</td>
-                    <td data-label="İlçe">Alsancak</td>
-                    <td data-label="Adres">Alsancak Mahallesi No:8</td>
-                    <td data-label="Telefon">+90 232 456 78 90</td>
-                </tr>
-            </tbody>
-        </table>
+        <input type="text" id="eczaneSearch" placeholder="Eczane adı ara..." onkeyup="filterEczane()">
     </div>
 
-    <script>
-        function filterEczane() {
-            var city, district, input, filter, table, tr, i;
-            city = document.getElementById("cityFilter").value.toUpperCase();
-            district = document.getElementById("districtFilter").value.toUpperCase();
-            input = document.getElementById("eczaneSearch").value.toUpperCase();
-            table = document.getElementById("eczaneTable");
-            tr = table.getElementsByTagName("tr");
+    <div id="eczaneList" class="eczane-list">
+        <div class="eczane-card" data-city="İstanbul" data-district="Kadıköy">
+            <h3>Örnek Eczane 1</h3>
+            <p><strong>Şehir:</strong> İstanbul</p>
+            <p><strong>İlçe:</strong> Kadıköy</p>
+            <p><strong>Adres:</strong> Bağdat Caddesi No:12</p>
+            <p><strong>Telefon:</strong> +90 212 123 45 67</p>
+        </div>
 
-            for (i = 1; i < tr.length; i++) {
-                var cityTd = tr[i].getElementsByTagName("td")[1];
-                var districtTd = tr[i].getElementsByTagName("td")[2];
-                var nameTd = tr[i].getElementsByTagName("td")[0];
+        <div class="eczane-card" data-city="Ankara" data-district="Kızılay">
+            <h3>Örnek Eczane 2</h3>
+            <p><strong>Şehir:</strong> Ankara</p>
+            <p><strong>İlçe:</strong> Kızılay</p>
+            <p><strong>Adres:</strong> Kızılay Meydanı No:5</p>
+            <p><strong>Telefon:</strong> +90 312 765 43 21</p>
+        </div>
 
-                if (cityTd && districtTd && nameTd) {
-                    var cityMatch = cityTd.textContent.toUpperCase().includes(city) || city === "";
-                    var districtMatch = districtTd.textContent.toUpperCase().includes(district) || district === "";
-                    var nameMatch = nameTd.textContent.toUpperCase().includes(input) || input === "";
+        <div class="eczane-card" data-city="İzmir" data-district="Alsancak">
+            <h3>Örnek Eczane 3</h3>
+            <p><strong>Şehir:</strong> İzmir</p>
+            <p><strong>İlçe:</strong> Alsancak</p>
+            <p><strong>Adres:</strong> Alsancak Mahallesi No:8</p>
+            <p><strong>Telefon:</strong> +90 232 456 78 90</p>
+        </div>
+    </div>
+</div>
 
-                    if (cityMatch && districtMatch && nameMatch) {
-                        tr[i].style.display = "";
-                    } else {
-                        tr[i].style.display = "none";
-                    }
-                }
+<style>
+    .eczane-container {
+        max-width: 900px;
+        margin: auto;
+        text-align: center;
+        font-family: Arial, sans-serif;
+    }
+    .eczane-filters {
+        display: flex;
+        justify-content: center;
+        gap: 10px;
+        margin-bottom: 15px;
+        flex-wrap: wrap;
+    }
+    select, input {
+        padding: 10px;
+        font-size: 1rem;
+        border: 1px solid #ddd;
+        border-radius: 5px;
+    }
+    .eczane-list {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 15px;
+        justify-content: center;
+    }
+    .eczane-card {
+        background: white;
+        padding: 15px;
+        border-radius: 10px;
+        box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.1);
+        width: 250px;
+        text-align: left;
+    }
+    .eczane-card h3 {
+        margin-top: 0;
+        color: #007bff;
+    }
+</style>
+
+<script>
+    function filterEczane() {
+        var city = document.getElementById("cityFilter").value.toUpperCase();
+        var district = document.getElementById("districtFilter").value.toUpperCase();
+        var input = document.getElementById("eczaneSearch").value.toUpperCase();
+        var cards = document.getElementsByClassName("eczane-card");
+
+        for (var i = 0; i < cards.length; i++) {
+            var cityMatch = city === "" || cards[i].getAttribute("data-city").toUpperCase().includes(city);
+            var districtMatch = district === "" || cards[i].getAttribute("data-district").toUpperCase().includes(district);
+            var nameMatch = input === "" || cards[i].innerText.toUpperCase().includes(input);
+
+            if (cityMatch && districtMatch && nameMatch) {
+                cards[i].style.display = "";
+            } else {
+                cards[i].style.display = "none";
             }
         }
-    </script>
-</body>
-</html>
+    }
+</script>
