@@ -1,6 +1,6 @@
 <div class="eczane-container">
-    <h1>Eczanelerimiz</h1>
-    <p>Size en yakın eczaneyi bulun!</p>
+    <h1>Bayilerimiz</h1>
+    <p>Size en yakın bayiyi bulun!</p>
 
     <div class="eczane-filters">
         <select id="cityFilter" onchange="filterEczane()">
@@ -10,41 +10,50 @@
             <option value="İzmir">İzmir</option>
         </select>
 
-        <select id="districtFilter" onchange="filterEczane()">
-            <option value="">İlçe Seçiniz</option>
-            <option value="Kadıköy">Kadıköy</option>
-            <option value="Kızılay">Kızılay</option>
-            <option value="Alsancak">Alsancak</option>
+        <select id="categoryFilter" onchange="filterEczane()">
+            <option value="">Kategori Seçiniz</option>
+            <option value="Eczane">Eczane</option>
+            <option value="Bayi">Bayi</option>
+            <option value="Distribütör">Distribütör</option>
         </select>
 
-        <input type="text" id="eczaneSearch" placeholder="Eczane adı ara..." onkeyup="filterEczane()">
+        <input type="text" id="eczaneSearch" placeholder="Bayi adı ara..." onkeyup="filterEczane()">
     </div>
 
-    <div id="eczaneList" class="eczane-list">
-        <div class="eczane-card" data-city="İstanbul" data-district="Kadıköy">
-            <h3>Örnek Eczane 1</h3>
-            <p><strong>Şehir:</strong> İstanbul</p>
-            <p><strong>İlçe:</strong> Kadıköy</p>
-            <p><strong>Adres:</strong> Bağdat Caddesi No:12</p>
-            <p><strong>Telefon:</strong> +90 212 123 45 67</p>
-        </div>
-
-        <div class="eczane-card" data-city="Ankara" data-district="Kızılay">
-            <h3>Örnek Eczane 2</h3>
-            <p><strong>Şehir:</strong> Ankara</p>
-            <p><strong>İlçe:</strong> Kızılay</p>
-            <p><strong>Adres:</strong> Kızılay Meydanı No:5</p>
-            <p><strong>Telefon:</strong> +90 312 765 43 21</p>
-        </div>
-
-        <div class="eczane-card" data-city="İzmir" data-district="Alsancak">
-            <h3>Örnek Eczane 3</h3>
-            <p><strong>Şehir:</strong> İzmir</p>
-            <p><strong>İlçe:</strong> Alsancak</p>
-            <p><strong>Adres:</strong> Alsancak Mahallesi No:8</p>
-            <p><strong>Telefon:</strong> +90 232 456 78 90</p>
-        </div>
-    </div>
+    <table id="eczaneTable">
+        <thead>
+            <tr>
+                <th>Bayi Adı</th>
+                <th>Şehir</th>
+                <th>Kategori</th>
+                <th>Adres</th>
+                <th>Telefon</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr data-city="İstanbul" data-category="Eczane">
+                <td>Örnek Eczane 1</td>
+                <td>İstanbul</td>
+                <td>Eczane</td>
+                <td>Bağdat Caddesi No:12</td>
+                <td><a href="tel:+902121234567">+90 212 123 45 67</a></td>
+            </tr>
+            <tr data-city="Ankara" data-category="Bayi">
+                <td>Örnek Bayi 2</td>
+                <td>Ankara</td>
+                <td>Bayi</td>
+                <td>Kızılay Meydanı No:5</td>
+                <td><a href="tel:+903127654321">+90 312 765 43 21</a></td>
+            </tr>
+            <tr data-city="İzmir" data-category="Distribütör">
+                <td>Örnek Distribütör 3</td>
+                <td>İzmir</td>
+                <td>Distribütör</td>
+                <td>Alsancak Mahallesi No:8</td>
+                <td><a href="tel:+902324567890">+90 232 456 78 90</a></td>
+            </tr>
+        </tbody>
+    </table>
 </div>
 
 <style>
@@ -67,43 +76,49 @@
         border: 1px solid #ddd;
         border-radius: 5px;
     }
-    .eczane-list {
-        display: flex;
-        flex-wrap: wrap;
-        gap: 15px;
-        justify-content: center;
+    table {
+        width: 100%;
+        border-collapse: collapse;
+        margin-top: 20px;
     }
-    .eczane-card {
-        background: white;
-        padding: 15px;
-        border-radius: 10px;
-        box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.1);
-        width: 250px;
+    th, td {
+        border: 1px solid #ddd;
+        padding: 10px;
         text-align: left;
     }
-    .eczane-card h3 {
-        margin-top: 0;
+    th {
+        background-color: #007bff;
+        color: white;
+    }
+    tr:nth-child(even) {
+        background-color: #f9f9f9;
+    }
+    tr:hover {
+        background-color: #e9ecef;
+    }
+    td a {
         color: #007bff;
+        text-decoration: none;
     }
 </style>
 
 <script>
     function filterEczane() {
         var city = document.getElementById("cityFilter").value.toUpperCase();
-        var district = document.getElementById("districtFilter").value.toUpperCase();
+        var category = document.getElementById("categoryFilter").value.toUpperCase();
         var input = document.getElementById("eczaneSearch").value.toUpperCase();
-        var cards = document.getElementsByClassName("eczane-card");
+        var rows = document.querySelectorAll("#eczaneTable tbody tr");
 
-        for (var i = 0; i < cards.length; i++) {
-            var cityMatch = city === "" || cards[i].getAttribute("data-city").toUpperCase().includes(city);
-            var districtMatch = district === "" || cards[i].getAttribute("data-district").toUpperCase().includes(district);
-            var nameMatch = input === "" || cards[i].innerText.toUpperCase().includes(input);
+        rows.forEach(row => {
+            var cityMatch = city === "" || row.getAttribute("data-city").toUpperCase() === city;
+            var categoryMatch = category === "" || row.getAttribute("data-category").toUpperCase() === category;
+            var nameMatch = input === "" || row.textContent.toUpperCase().includes(input);
 
-            if (cityMatch && districtMatch && nameMatch) {
-                cards[i].style.display = "";
+            if (cityMatch && categoryMatch && nameMatch) {
+                row.style.display = "";
             } else {
-                cards[i].style.display = "none";
+                row.style.display = "none";
             }
-        }
+        });
     }
 </script>
