@@ -28,10 +28,15 @@
             color: #666;
             font-size: 1.1rem;
         }
-        input {
-            width: 100%;
+        .filters {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+            gap: 10px;
+            margin-bottom: 15px;
+        }
+        select, input {
             padding: 10px;
-            margin: 10px 0;
             font-size: 1rem;
             border: 1px solid #ddd;
             border-radius: 5px;
@@ -57,6 +62,9 @@
             background-color: #e9ecef;
         }
         @media (max-width: 600px) {
+            .filters {
+                flex-direction: column;
+            }
             table, thead, tbody, th, td, tr {
                 display: block;
                 width: 100%;
@@ -85,13 +93,30 @@
         <h1>Eczanelerimiz</h1>
         <p>Size en yakın eczaneyi bulun!</p>
 
-        <input type="text" id="eczaneSearch" placeholder="Eczane ara..." onkeyup="searchEczane()">
+        <div class="filters">
+            <select id="cityFilter" onchange="filterEczane()">
+                <option value="">İl Seçiniz</option>
+                <option value="İstanbul">İstanbul</option>
+                <option value="Ankara">Ankara</option>
+                <option value="İzmir">İzmir</option>
+            </select>
+
+            <select id="districtFilter" onchange="filterEczane()">
+                <option value="">İlçe Seçiniz</option>
+                <option value="Kadıköy">Kadıköy</option>
+                <option value="Kızılay">Kızılay</option>
+                <option value="Alsancak">Alsancak</option>
+            </select>
+
+            <input type="text" id="eczaneSearch" placeholder="Eczane adı ara..." onkeyup="filterEczane()">
+        </div>
 
         <table id="eczaneTable">
             <thead>
                 <tr>
                     <th>Eczane Adı</th>
-                    <th>Şehir</th>
+                    <th>İl</th>
+                    <th>İlçe</th>
                     <th>Adres</th>
                     <th>Telefon</th>
                 </tr>
@@ -99,19 +124,22 @@
             <tbody>
                 <tr>
                     <td data-label="Eczane Adı">Örnek Eczane 1</td>
-                    <td data-label="Şehir">İstanbul</td>
+                    <td data-label="İl">İstanbul</td>
+                    <td data-label="İlçe">Kadıköy</td>
                     <td data-label="Adres">Bağdat Caddesi No:12</td>
                     <td data-label="Telefon">+90 212 123 45 67</td>
                 </tr>
                 <tr>
                     <td data-label="Eczane Adı">Örnek Eczane 2</td>
-                    <td data-label="Şehir">Ankara</td>
+                    <td data-label="İl">Ankara</td>
+                    <td data-label="İlçe">Kızılay</td>
                     <td data-label="Adres">Kızılay Meydanı No:5</td>
                     <td data-label="Telefon">+90 312 765 43 21</td>
                 </tr>
                 <tr>
                     <td data-label="Eczane Adı">Örnek Eczane 3</td>
-                    <td data-label="Şehir">İzmir</td>
+                    <td data-label="İl">İzmir</td>
+                    <td data-label="İlçe">Alsancak</td>
                     <td data-label="Adres">Alsancak Mahallesi No:8</td>
                     <td data-label="Telefon">+90 232 456 78 90</td>
                 </tr>
@@ -120,18 +148,25 @@
     </div>
 
     <script>
-        function searchEczane() {
-            var input, filter, table, tr, td, i, txtValue;
-            input = document.getElementById("eczaneSearch");
-            filter = input.value.toUpperCase();
+        function filterEczane() {
+            var city, district, input, filter, table, tr, i;
+            city = document.getElementById("cityFilter").value.toUpperCase();
+            district = document.getElementById("districtFilter").value.toUpperCase();
+            input = document.getElementById("eczaneSearch").value.toUpperCase();
             table = document.getElementById("eczaneTable");
             tr = table.getElementsByTagName("tr");
 
             for (i = 1; i < tr.length; i++) {
-                td = tr[i].getElementsByTagName("td")[0];
-                if (td) {
-                    txtValue = td.textContent || td.innerText;
-                    if (txtValue.toUpperCase().indexOf(filter) > -1) {
+                var cityTd = tr[i].getElementsByTagName("td")[1];
+                var districtTd = tr[i].getElementsByTagName("td")[2];
+                var nameTd = tr[i].getElementsByTagName("td")[0];
+
+                if (cityTd && districtTd && nameTd) {
+                    var cityMatch = cityTd.textContent.toUpperCase().includes(city) || city === "";
+                    var districtMatch = districtTd.textContent.toUpperCase().includes(district) || district === "";
+                    var nameMatch = nameTd.textContent.toUpperCase().includes(input) || input === "";
+
+                    if (cityMatch && districtMatch && nameMatch) {
                         tr[i].style.display = "";
                     } else {
                         tr[i].style.display = "none";
