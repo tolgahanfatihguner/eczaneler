@@ -1,8 +1,8 @@
-<div class="eczane-container">
+<div class="container">
     <h1>Bayilerimiz</h1>
     <p>Size en yakın bayiyi bulun!</p>
 
-    <div class="eczane-filters">
+    <div class="filters">
         <select id="cityFilter" onchange="filterEczane()">
             <option value="">İl Seçiniz</option>
             <option value="İstanbul">İstanbul</option>
@@ -18,87 +18,102 @@
         </select>
 
         <input type="text" id="eczaneSearch" placeholder="Bayi adı ara..." onkeyup="filterEczane()">
+
+        <button onclick="resetFilters()">Filtreleri Sıfırla</button>
     </div>
 
-    <table id="eczaneTable">
-        <thead>
-            <tr>
-                <th>Bayi Adı</th>
-                <th>Şehir</th>
-                <th>Kategori</th>
-                <th>Adres</th>
-                <th>Telefon</th>
-            </tr>
-        </thead>
-        <tbody>
-            <tr data-city="İstanbul" data-category="Eczane">
-                <td>Örnek Eczane 1</td>
-                <td>İstanbul</td>
-                <td>Eczane</td>
-                <td>Bağdat Caddesi No:12</td>
-                <td><a href="tel:+902121234567">+90 212 123 45 67</a></td>
-            </tr>
-            <tr data-city="Ankara" data-category="Bayi">
-                <td>Örnek Bayi 2</td>
-                <td>Ankara</td>
-                <td>Bayi</td>
-                <td>Kızılay Meydanı No:5</td>
-                <td><a href="tel:+903127654321">+90 312 765 43 21</a></td>
-            </tr>
-            <tr data-city="İzmir" data-category="Distribütör">
-                <td>Örnek Distribütör 3</td>
-                <td>İzmir</td>
-                <td>Distribütör</td>
-                <td>Alsancak Mahallesi No:8</td>
-                <td><a href="tel:+902324567890">+90 232 456 78 90</a></td>
-            </tr>
-        </tbody>
-    </table>
+    <div id="eczaneList" class="eczane-list">
+        <div class="eczane-card" data-city="İstanbul" data-category="Eczane">
+            <h3>Örnek Eczane 1</h3>
+            <p><strong>Şehir:</strong> İstanbul</p>
+            <p><strong>Kategori:</strong> Eczane</p>
+            <p><strong>Adres:</strong> Bağdat Caddesi No:12</p>
+            <p><strong>Telefon:</strong> <a href="tel:+902121234567">+90 212 123 45 67</a></p>
+        </div>
+
+        <div class="eczane-card" data-city="Ankara" data-category="Bayi">
+            <h3>Örnek Bayi 2</h3>
+            <p><strong>Şehir:</strong> Ankara</p>
+            <p><strong>Kategori:</strong> Bayi</p>
+            <p><strong>Adres:</strong> Kızılay Meydanı No:5</p>
+            <p><strong>Telefon:</strong> <a href="tel:+903127654321">+90 312 765 43 21</a></p>
+        </div>
+
+        <div class="eczane-card" data-city="İzmir" data-category="Distribütör">
+            <h3>Örnek Distribütör 3</h3>
+            <p><strong>Şehir:</strong> İzmir</p>
+            <p><strong>Kategori:</strong> Distribütör</p>
+            <p><strong>Adres:</strong> Alsancak Mahallesi No:8</p>
+            <p><strong>Telefon:</strong> <a href="tel:+902324567890">+90 232 456 78 90</a></p>
+        </div>
+    </div>
 </div>
 
 <style>
-    .eczane-container {
+    body {
+        font-family: Arial, sans-serif;
+        background-color: #f9f9f9;
+        color: #333;
+        text-align: center;
+    }
+    .container {
         max-width: 900px;
         margin: auto;
-        text-align: center;
-        font-family: Arial, sans-serif;
+        background: white;
+        padding: 20px;
+        border-radius: 10px;
+        box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.1);
     }
-    .eczane-filters {
+    .filters {
         display: flex;
         justify-content: center;
+        flex-wrap: wrap;
         gap: 10px;
         margin-bottom: 15px;
-        flex-wrap: wrap;
     }
-    select, input {
+    select, input, button {
         padding: 10px;
         font-size: 1rem;
         border: 1px solid #ddd;
         border-radius: 5px;
     }
-    table {
-        width: 100%;
-        border-collapse: collapse;
-        margin-top: 20px;
-    }
-    th, td {
-        border: 1px solid #ddd;
-        padding: 10px;
-        text-align: left;
-    }
-    th {
+    button {
         background-color: #007bff;
         color: white;
+        border: none;
+        cursor: pointer;
     }
-    tr:nth-child(even) {
-        background-color: #f9f9f9;
+    button:hover {
+        background-color: #0056b3;
     }
-    tr:hover {
-        background-color: #e9ecef;
+    .eczane-list {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 15px;
+        justify-content: center;
     }
-    td a {
+    .eczane-card {
+        background: white;
+        padding: 15px;
+        border-radius: 10px;
+        box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.1);
+        width: 250px;
+        text-align: left;
+        transition: transform 0.3s;
+    }
+    .eczane-card:hover {
+        transform: scale(1.05);
+    }
+    .eczane-card h3 {
+        margin-top: 0;
+        color: #007bff;
+    }
+    .eczane-card a {
         color: #007bff;
         text-decoration: none;
+    }
+    .eczane-card a:hover {
+        text-decoration: underline;
     }
 </style>
 
@@ -107,18 +122,25 @@
         var city = document.getElementById("cityFilter").value.toUpperCase();
         var category = document.getElementById("categoryFilter").value.toUpperCase();
         var input = document.getElementById("eczaneSearch").value.toUpperCase();
-        var rows = document.querySelectorAll("#eczaneTable tbody tr");
+        var cards = document.getElementsByClassName("eczane-card");
 
-        rows.forEach(row => {
-            var cityMatch = city === "" || row.getAttribute("data-city").toUpperCase() === city;
-            var categoryMatch = category === "" || row.getAttribute("data-category").toUpperCase() === category;
-            var nameMatch = input === "" || row.textContent.toUpperCase().includes(input);
+        for (var i = 0; i < cards.length; i++) {
+            var cityMatch = city === "" || cards[i].getAttribute("data-city").toUpperCase().includes(city);
+            var categoryMatch = category === "" || cards[i].getAttribute("data-category").toUpperCase().includes(category);
+            var nameMatch = input === "" || cards[i].innerText.toUpperCase().includes(input);
 
             if (cityMatch && categoryMatch && nameMatch) {
-                row.style.display = "";
+                cards[i].style.display = "";
             } else {
-                row.style.display = "none";
+                cards[i].style.display = "none";
             }
-        });
+        }
+    }
+
+    function resetFilters() {
+        document.getElementById("cityFilter").value = "";
+        document.getElementById("categoryFilter").value = "";
+        document.getElementById("eczaneSearch").value = "";
+        filterEczane();
     }
 </script>
