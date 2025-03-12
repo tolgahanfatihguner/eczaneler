@@ -12,15 +12,6 @@
             margin: 0;
             padding: 0;
         }
-        .banner {
-            background-color: #F07875;
-            color: #1C2B3A;
-            text-align: center;
-            padding: 10px;
-            font-size: 18px;
-            font-weight: bold;
-            width: 100%;
-        }
         .container {
             max-width: 1200px;
             margin: 20px auto;
@@ -29,6 +20,17 @@
             border-radius: 8px;
             box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
             text-align: center;
+        }
+        .banner {
+            background-color: #F07875;
+            color: #1C2B3A;
+            text-align: center;
+            padding: 10px;
+            font-size: 18px;
+            font-weight: bold;
+            max-width: 1200px;
+            margin: 0 auto 20px auto;
+            border-radius: 8px;
         }
         .title {
             font-size: 28px;
@@ -133,7 +135,34 @@
             <button onclick="filterPharmacies()">Ara</button>
         </div>
         <div id="pharmacyList" class="pharmacy-list">
-            <!-- Eczane listesi burada -->
+            <div class="pharmacy">
+                <img src="https://upload.wikimedia.org/wikipedia/commons/e/ec/Map_pin_icon.svg" alt="Harita Pin">
+                <h3>İstanbul / Fatih</h3>
+                <p>Okyanus Eczanesi</p>
+                <p>📞 212 529 7960</p>
+                <a href="https://goo.gl/maps/X1y" target="_blank" class="map-link">Haritada Gör</a>
+            </div>
+            <div class="pharmacy">
+                <img src="https://upload.wikimedia.org/wikipedia/commons/e/ec/Map_pin_icon.svg" alt="Harita Pin">
+                <h3>İstanbul / Kadıköy</h3>
+                <p>İntepe Eczanesi</p>
+                <p>📞 216 445 0726</p>
+                <a href="https://goo.gl/maps/Y2x" target="_blank" class="map-link">Haritada Gör</a>
+            </div>
+            <div class="pharmacy">
+                <img src="https://upload.wikimedia.org/wikipedia/commons/e/ec/Map_pin_icon.svg" alt="Harita Pin">
+                <h3>İzmir / Güzelbahçe</h3>
+                <p>Mayıs Eczanesi</p>
+                <p>📞 552 255 9693</p>
+                <a href="https://goo.gl/maps/Z3w" target="_blank" class="map-link">Haritada Gör</a>
+            </div>
+            <div class="pharmacy">
+                <img src="https://upload.wikimedia.org/wikipedia/commons/e/ec/Map_pin_icon.svg" alt="Harita Pin">
+                <h3>Ankara / Çankaya</h3>
+                <p>Güven Eczanesi</p>
+                <p>📞 312 441 2233</p>
+                <a href="https://goo.gl/maps/A4z" target="_blank" class="map-link">Haritada Gör</a>
+            </div>
         </div>
     </div>
 </body>
