@@ -1,160 +1,82 @@
-<div class="container">
-    <h1>Bayilerimiz</h1>
-    <p>Size en yakın bayiyi bulun!</p>
-
-    <div class="filters">
-        <select id="cityFilter" onchange="filterEczane()">
-            <option value="">İl Seçiniz</option>
-            <option value="İstanbul">İstanbul</option>
-            <option value="Ankara">Ankara</option>
-            <option value="İzmir">İzmir</option>
-        </select>
-
-        <select id="categoryFilter" onchange="filterEczane()">
-            <option value="">Kategori Seçiniz</option>
-            <option value="Eczane">Eczane</option>
-            <option value="Bayi">Bayi</option>
-            <option value="Distribütör">Distribütör</option>
-        </select>
-
-        <input type="text" id="eczaneSearch" placeholder="Bayi adı ara..." onkeyup="filterEczane()">
-
-        <button onclick="resetFilters()">Sıfırla</button>
-    </div>
-
-    <div id="eczaneList" class="eczane-list">
-        <div class="eczane-card" data-city="İstanbul" data-category="Eczane">
-            <h3>Örnek Eczane 1</h3>
-            <p><strong>Şehir:</strong> İstanbul</p>
-            <p><strong>Kategori:</strong> Eczane</p>
-            <p><strong>Adres:</strong> Bağdat Caddesi No:12</p>
-            <p><strong>Telefon:</strong> <a href="tel:+902121234567">+90 212 123 45 67</a></p>
-        </div>
-
-        <div class="eczane-card" data-city="Ankara" data-category="Bayi">
-            <h3>Örnek Bayi 2</h3>
-            <p><strong>Şehir:</strong> Ankara</p>
-            <p><strong>Kategori:</strong> Bayi</p>
-            <p><strong>Adres:</strong> Kızılay Meydanı No:5</p>
-            <p><strong>Telefon:</strong> <a href="tel:+903127654321">+90 312 765 43 21</a></p>
-        </div>
-
-        <div class="eczane-card" data-city="İzmir" data-category="Distribütör">
-            <h3>Örnek Distribütör 3</h3>
-            <p><strong>Şehir:</strong> İzmir</p>
-            <p><strong>Kategori:</strong> Distribütör</p>
-            <p><strong>Adres:</strong> Alsancak Mahallesi No:8</p>
-            <p><strong>Telefon:</strong> <a href="tel:+902324567890">+90 232 456 78 90</a></p>
-        </div>
-    </div>
-</div>
-
-<style>
-    body {
-        font-family: 'Poppins', sans-serif;
-        background-color: #f4f4f8;
-        color: #333;
-        text-align: center;
-    }
-    .container {
-        max-width: 900px;
-        margin: auto;
-        background: white;
-        padding: 20px;
-        border-radius: 12px;
-        box-shadow: 0px 5px 15px rgba(0, 0, 0, 0.1);
-    }
-    h1 {
-        font-size: 2rem;
-        font-weight: 600;
-        color: #222;
-    }
-    .filters {
-        display: flex;
-        justify-content: center;
-        flex-wrap: wrap;
-        gap: 12px;
-        margin-bottom: 20px;
-    }
-    select, input, button {
-        padding: 12px;
-        font-size: 1rem;
-        border: 1px solid #ddd;
-        border-radius: 8px;
-        transition: 0.3s;
-    }
-    button {
-        background-color: #4CAF50;
-        color: white;
-        border: none;
-        cursor: pointer;
-    }
-    button:hover {
-        background-color: #45a049;
-    }
-    .eczane-list {
-        display: flex;
-        flex-wrap: wrap;
-        gap: 20px;
-        justify-content: center;
-    }
-    .eczane-card {
-        background: white;
-        padding: 15px;
-        border-radius: 12px;
-        box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.1);
-        width: 280px;
-        text-align: left;
-        transition: transform 0.3s, box-shadow 0.3s;
-    }
-    .eczane-card:hover {
-        transform: translateY(-5px);
-        box-shadow: 0px 10px 20px rgba(0, 0, 0, 0.15);
-    }
-    .eczane-card h3 {
-        margin-top: 0;
-        color: #4CAF50;
-        font-size: 1.3rem;
-    }
-    .eczane-card p {
-        margin: 5px 0;
-        color: #555;
-        font-size: 0.9rem;
-    }
-    .eczane-card a {
-        color: #4CAF50;
-        text-decoration: none;
-        font-weight: 600;
-    }
-    .eczane-card a:hover {
-        text-decoration: underline;
-    }
-</style>
-
-<script>
-    function filterEczane() {
-        var city = document.getElementById("cityFilter").value.toUpperCase();
-        var category = document.getElementById("categoryFilter").value.toUpperCase();
-        var input = document.getElementById("eczaneSearch").value.toUpperCase();
-        var cards = document.getElementsByClassName("eczane-card");
-
-        for (var i = 0; i < cards.length; i++) {
-            var cityMatch = city === "" || cards[i].getAttribute("data-city").toUpperCase().includes(city);
-            var categoryMatch = category === "" || cards[i].getAttribute("data-category").toUpperCase().includes(category);
-            var nameMatch = input === "" || cards[i].innerText.toUpperCase().includes(input);
-
-            if (cityMatch && categoryMatch && nameMatch) {
-                cards[i].style.display = "";
-            } else {
-                cards[i].style.display = "none";
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Eczane Listesi</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f8f9fa;
+            margin: 0;
+            padding: 20px;
+        }
+        .container {
+            max-width: 900px;
+            margin: auto;
+            background: white;
+            padding: 20px;
+            border-radius: 8px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+        }
+        .title {
+            text-align: center;
+            font-size: 24px;
+            font-weight: bold;
+            margin-bottom: 20px;
+        }
+        .pharmacy-list {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 20px;
+        }
+        .pharmacy {
+            background: #fff;
+            padding: 15px;
+            border-radius: 6px;
+            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+            width: calc(50% - 10px);
+        }
+        .pharmacy h3 {
+            margin: 0 0 10px 0;
+            font-size: 18px;
+        }
+        .pharmacy p {
+            margin: 5px 0;
+            font-size: 14px;
+        }
+        @media (max-width: 600px) {
+            .pharmacy {
+                width: 100%;
             }
         }
-    }
-
-    function resetFilters() {
-        document.getElementById("cityFilter").value = "";
-        document.getElementById("categoryFilter").value = "";
-        document.getElementById("eczaneSearch").value = "";
-        filterEczane();
-    }
-</script>
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="title">Eczane Listesi</div>
+        <div class="pharmacy-list">
+            <div class="pharmacy">
+                <h3>Eczane 1</h3>
+                <p>Adres: Örnek Mah. 123. Sok. No: 4, İstanbul</p>
+                <p>Telefon: 0212 123 45 67</p>
+            </div>
+            <div class="pharmacy">
+                <h3>Eczane 2</h3>
+                <p>Adres: Test Cad. No: 56, Ankara</p>
+                <p>Telefon: 0312 987 65 43</p>
+            </div>
+            <div class="pharmacy">
+                <h3>Eczane 3</h3>
+                <p>Adres: Deneme Sk. No: 89, İzmir</p>
+                <p>Telefon: 0232 456 78 90</p>
+            </div>
+            <div class="pharmacy">
+                <h3>Eczane 4</h3>
+                <p>Adres: Sahil Yolu No: 12, Antalya</p>
+                <p>Telefon: 0242 321 67 89</p>
+            </div>
+        </div>
+    </div>
+</body>
+</html>
