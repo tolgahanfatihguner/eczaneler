@@ -12,6 +12,14 @@
             margin: 0;
             padding: 20px;
         }
+        .banner {
+            background-color: #F07875;
+            color: #1C2B3A;
+            text-align: center;
+            padding: 15px;
+            font-size: 20px;
+            font-weight: bold;
+        }
         .container {
             max-width: 1200px;
             margin: auto;
@@ -107,6 +115,7 @@
     </style>
 </head>
 <body>
+    <div class="banner">Doğal Gıda Takviyeleri ile Sağlıklı Günler</div>
     <div class="container">
         <div class="title">Yetkili Satış Eczaneleri</div>
         <div class="description">
@@ -126,43 +135,5 @@
             <!-- Eczane listesi burada -->
         </div>
     </div>
-
-    <script>
-        const pharmacies = [
-            { il: "İstanbul", ilce: "Fatih", ad: "Okyanus Eczanesi", tel: "2125297960", map: "https://goo.gl/maps/X1y" },
-            { il: "İstanbul", ilce: "Kadıköy", ad: "İntepe Eczanesi", tel: "2164450726", map: "https://goo.gl/maps/Y2x" },
-            { il: "İzmir", ilce: "Güzelbahçe", ad: "Mayıs Eczanesi", tel: "5522559693", map: "https://goo.gl/maps/Z3w" },
-            { il: "Ankara", ilce: "Çankaya", ad: "Güven Eczanesi", tel: "3124412233", map: "https://goo.gl/maps/A4z" }
-        ];
-        
-        function renderPharmacies(list) {
-            const pharmacyList = document.getElementById("pharmacyList");
-            pharmacyList.innerHTML = list.map(pharmacy => `
-                <div class="pharmacy">
-                    <img src="https://upload.wikimedia.org/wikipedia/commons/e/ec/Map_pin_icon.svg" alt="Harita Pin">
-                    <h3>${pharmacy.il} / ${pharmacy.ilce}</h3>
-                    <p>${pharmacy.ad}</p>
-                    <p>📞 ${pharmacy.tel}</p>
-                    <a href="${pharmacy.map}" target="_blank" class="map-link">Haritada Gör</a>
-                </div>
-            `).join('');
-        }
-        
-        function filterPharmacies() {
-            const city = document.getElementById("cityFilter").value.toLowerCase();
-            const searchQuery = document.getElementById("searchBox").value.toLowerCase();
-            
-            const filtered = pharmacies.filter(p =>
-                (city === "" || p.il.toLowerCase().includes(city)) &&
-                (searchQuery === "" || p.ad.toLowerCase().includes(searchQuery))
-            );
-            renderPharmacies(filtered);
-        }
-        
-        document.getElementById("searchBox").addEventListener("input", filterPharmacies);
-        document.getElementById("cityFilter").addEventListener("change", filterPharmacies);
-        
-        renderPharmacies(pharmacies);
-    </script>
 </body>
 </html>
