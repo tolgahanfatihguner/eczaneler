@@ -6,6 +6,11 @@
     <title>Yetkili Satış Eczaneleri</title>
     <link href="https://fonts.googleapis.com/css2?family=Wix+Madefor+Display:wght@400;500;700&display=swap" rel="stylesheet">
     <style>
+        :root {
+            --primary-color: #F07875;
+            --text-color: #1C2B3A;
+        }
+        
         body {
             font-family: 'Wix Madefor Display', sans-serif;
             background-color: #f8f9fa;
@@ -18,12 +23,12 @@
             background: white;
             padding: 20px;
             border-radius: 8px;
-            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+            box-shadow: 0 0 10px var(--primary-color);
             text-align: center;
         }
         .banner {
-            background-color: #F07875;
-            color: #1C2B3A;
+            background-color: var(--primary-color);
+            color: var(--text-color);
             text-align: center;
             padding: 10px;
             font-size: 18px;
@@ -36,6 +41,7 @@
             font-size: 28px;
             font-weight: bold;
             margin-bottom: 10px;
+            color: var(--text-color);
         }
         .description {
             font-size: 18px;
@@ -52,16 +58,20 @@
         .search-bar select, .search-bar input {
             padding: 10px;
             border-radius: 5px;
-            border: 1px solid #ccc;
+            border: 1px solid var(--primary-color);
             width: 200px;
         }
         .search-bar button {
-            background: #0056b3;
-            color: white;
+            background: var(--primary-color);
+            color: var(--text-color);
             border: none;
             padding: 10px 15px;
             border-radius: 5px;
             cursor: pointer;
+            font-weight: bold;
+        }
+        .search-bar button:hover {
+            background: darken(var(--primary-color), 10%);
         }
         .pharmacy-list {
             display: grid;
@@ -73,13 +83,13 @@
             background: white;
             padding: 15px;
             border-radius: 6px;
-            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+            box-shadow: 0 2px 5px var(--primary-color);
             transition: 0.3s;
             text-align: center;
         }
         .pharmacy:hover {
             transform: translateY(-5px);
-            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
+            box-shadow: 0 4px 10px var(--primary-color);
         }
         .pharmacy img {
             width: 40px;
@@ -90,7 +100,7 @@
             font-size: 18px;
             font-weight: bold;
             margin: 5px 0;
-            color: #003366;
+            color: var(--text-color);
         }
         .pharmacy p {
             margin: 5px 0;
@@ -101,14 +111,15 @@
             display: inline-block;
             margin-top: 5px;
             padding: 5px 10px;
-            background-color: #28a745;
-            color: white;
+            background-color: var(--primary-color);
+            color: var(--text-color);
             border-radius: 5px;
             text-decoration: none;
             font-size: 14px;
+            font-weight: bold;
         }
         .map-link:hover {
-            background-color: #218838;
+            background-color: darken(var(--primary-color), 10%);
         }
         @media (max-width: 600px) {
             .pharmacy-list {
@@ -135,34 +146,7 @@
             <button onclick="filterPharmacies()">Ara</button>
         </div>
         <div id="pharmacyList" class="pharmacy-list">
-            <div class="pharmacy">
-                <img src="https://upload.wikimedia.org/wikipedia/commons/e/ec/Map_pin_icon.svg" alt="Harita Pin">
-                <h3>İstanbul / Fatih</h3>
-                <p>Okyanus Eczanesi</p>
-                <p>📞 212 529 7960</p>
-                <a href="https://goo.gl/maps/X1y" target="_blank" class="map-link">Haritada Gör</a>
-            </div>
-            <div class="pharmacy">
-                <img src="https://upload.wikimedia.org/wikipedia/commons/e/ec/Map_pin_icon.svg" alt="Harita Pin">
-                <h3>İstanbul / Kadıköy</h3>
-                <p>İntepe Eczanesi</p>
-                <p>📞 216 445 0726</p>
-                <a href="https://goo.gl/maps/Y2x" target="_blank" class="map-link">Haritada Gör</a>
-            </div>
-            <div class="pharmacy">
-                <img src="https://upload.wikimedia.org/wikipedia/commons/e/ec/Map_pin_icon.svg" alt="Harita Pin">
-                <h3>İzmir / Güzelbahçe</h3>
-                <p>Mayıs Eczanesi</p>
-                <p>📞 552 255 9693</p>
-                <a href="https://goo.gl/maps/Z3w" target="_blank" class="map-link">Haritada Gör</a>
-            </div>
-            <div class="pharmacy">
-                <img src="https://upload.wikimedia.org/wikipedia/commons/e/ec/Map_pin_icon.svg" alt="Harita Pin">
-                <h3>Ankara / Çankaya</h3>
-                <p>Güven Eczanesi</p>
-                <p>📞 312 441 2233</p>
-                <a href="https://goo.gl/maps/A4z" target="_blank" class="map-link">Haritada Gör</a>
-            </div>
+            <!-- Statik eczane listesi -->
         </div>
     </div>
 </body>
