@@ -64,6 +64,7 @@
             border-radius: 6px;
             box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
             transition: 0.3s;
+            text-align: center;
         }
         .pharmacy:hover {
             transform: translateY(-5px);
@@ -85,6 +86,19 @@
             font-size: 14px;
             color: #555;
         }
+        .map-link {
+            display: inline-block;
+            margin-top: 5px;
+            padding: 5px 10px;
+            background-color: #28a745;
+            color: white;
+            border-radius: 5px;
+            text-decoration: none;
+            font-size: 14px;
+        }
+        .map-link:hover {
+            background-color: #218838;
+        }
         @media (max-width: 600px) {
             .pharmacy-list {
                 grid-template-columns: 1fr;
@@ -99,347 +113,56 @@
             Ürünlerimizi yetkili eczanelerimizden güvenle satın alabilirsiniz. Size en yakın eczaneyi bulmak için aşağıdaki filtreleri kullanabilirsiniz.
         </div>
         <div class="search-bar">
-            <select>
+            <select id="cityFilter">
                 <option value="">Şehir Seç</option>
                 <option value="İstanbul">İstanbul</option>
                 <option value="İzmir">İzmir</option>
                 <option value="Ankara">Ankara</option>
             </select>
-            <input type="text" placeholder="Eczane Ara...">
-            <button>Ara</button>
+            <input type="text" id="searchBox" placeholder="Eczane Ara...">
+            <button onclick="filterPharmacies()">Ara</button>
         </div>
-            <div class="pharmacy">
-                <img src="https://upload.wikimedia.org/wikipedia/commons/e/ec/Map_pin_icon.svg" alt="Harita Pin">
-                <h3>İSTANBUL (AVRUPA) / FATİH</h3>
-                <p>EFEOĞLU ECZANESİ</p>
-                <p>📞 5422133601</p>
-            </div>
-            <div class="pharmacy">
-                <img src="https://upload.wikimedia.org/wikipedia/commons/e/ec/Map_pin_icon.svg" alt="Harita Pin">
-                <h3>İSTANBUL (AVRUPA) / KÜÇÜKÇEKMECE</h3>
-                <p>CADDE E-5 ECZANESİ</p>
-                <p>📞 5073287007</p>
-            </div>
-            <div class="pharmacy">
-                <img src="https://upload.wikimedia.org/wikipedia/commons/e/ec/Map_pin_icon.svg" alt="Harita Pin">
-                <h3>İSTANBUL (AVRUPA) / KÜÇÜKÇEKMECE</h3>
-                <p>GÜREL ECZANESİ</p>
-                <p>📞 2126960066</p>
-            </div>
-         <div class="pharmacy">
-                <img src="https://upload.wikimedia.org/wikipedia/commons/e/ec/Map_pin_icon.svg" alt="Harita Pin">
-                <h3>İSTANBUL (AVRUPA) / KÜÇÜKÇEKMECE</h3>
-                <p>GÜREL ECZANESİ</p>
-                <p>📞 2126960066</p>
-            </div>
-         <div class="pharmacy">
-                <img src="https://upload.wikimedia.org/wikipedia/commons/e/ec/Map_pin_icon.svg" alt="Harita Pin">
-                <h3>İSTANBUL (AVRUPA) / KÜÇÜKÇEKMECE</h3>
-                <p>GÜREL ECZANESİ</p>
-                <p>📞 2126960066</p>
-            </div>
-         <div class="pharmacy">
-                <img src="https://upload.wikimedia.org/wikipedia/commons/e/ec/Map_pin_icon.svg" alt="Harita Pin">
-                <h3>İSTANBUL (AVRUPA) / KÜÇÜKÇEKMECE</h3>
-                <p>GÜREL ECZANESİ</p>
-                <p>📞 2126960066</p>
-            </div>
-         <div class="pharmacy">
-                <img src="https://upload.wikimedia.org/wikipedia/commons/e/ec/Map_pin_icon.svg" alt="Harita Pin">
-                <h3>İSTANBUL (AVRUPA) / KÜÇÜKÇEKMECE</h3>
-                <p>GÜREL ECZANESİ</p>
-                <p>📞 2126960066</p>
-            </div>
-         <div class="pharmacy">
-                <img src="https://upload.wikimedia.org/wikipedia/commons/e/ec/Map_pin_icon.svg" alt="Harita Pin">
-                <h3>İSTANBUL (AVRUPA) / KÜÇÜKÇEKMECE</h3>
-                <p>GÜREL ECZANESİ</p>
-                <p>📞 2126960066</p>
-            </div>
-         <div class="pharmacy">
-                <img src="https://upload.wikimedia.org/wikipedia/commons/e/ec/Map_pin_icon.svg" alt="Harita Pin">
-                <h3>İSTANBUL (AVRUPA) / KÜÇÜKÇEKMECE</h3>
-                <p>GÜREL ECZANESİ</p>
-                <p>📞 2126960066</p>
-            </div>
-         <div class="pharmacy">
-                <img src="https://upload.wikimedia.org/wikipedia/commons/e/ec/Map_pin_icon.svg" alt="Harita Pin">
-                <h3>İSTANBUL (AVRUPA) / KÜÇÜKÇEKMECE</h3>
-                <p>GÜREL ECZANESİ</p>
-                <p>📞 2126960066</p>
-            </div>
-         <div class="pharmacy">
-                <img src="https://upload.wikimedia.org/wikipedia/commons/e/ec/Map_pin_icon.svg" alt="Harita Pin">
-                <h3>İSTANBUL (AVRUPA) / KÜÇÜKÇEKMECE</h3>
-                <p>GÜREL ECZANESİ</p>
-                <p>📞 2126960066</p>
-            </div>
-         <div class="pharmacy">
-                <img src="https://upload.wikimedia.org/wikipedia/commons/e/ec/Map_pin_icon.svg" alt="Harita Pin">
-                <h3>İSTANBUL (AVRUPA) / KÜÇÜKÇEKMECE</h3>
-                <p>GÜREL ECZANESİ</p>
-                <p>📞 2126960066</p>
-            </div>
-         <div class="pharmacy">
-                <img src="https://upload.wikimedia.org/wikipedia/commons/e/ec/Map_pin_icon.svg" alt="Harita Pin">
-                <h3>İSTANBUL (AVRUPA) / KÜÇÜKÇEKMECE</h3>
-                <p>GÜREL ECZANESİ</p>
-                <p>📞 2126960066</p>
-            </div>
-         <div class="pharmacy">
-                <img src="https://upload.wikimedia.org/wikipedia/commons/e/ec/Map_pin_icon.svg" alt="Harita Pin">
-                <h3>İSTANBUL (AVRUPA) / KÜÇÜKÇEKMECE</h3>
-                <p>GÜREL ECZANESİ</p>
-                <p>📞 2126960066</p>
-            </div>
-         <div class="pharmacy">
-                <img src="https://upload.wikimedia.org/wikipedia/commons/e/ec/Map_pin_icon.svg" alt="Harita Pin">
-                <h3>İSTANBUL (AVRUPA) / KÜÇÜKÇEKMECE</h3>
-                <p>GÜREL ECZANESİ</p>
-                <p>📞 2126960066</p>
-            </div>
-         <div class="pharmacy">
-                <img src="https://upload.wikimedia.org/wikipedia/commons/e/ec/Map_pin_icon.svg" alt="Harita Pin">
-                <h3>İSTANBUL (AVRUPA) / KÜÇÜKÇEKMECE</h3>
-                <p>GÜREL ECZANESİ</p>
-                <p>📞 2126960066</p>
-            </div>
-         <div class="pharmacy">
-                <img src="https://upload.wikimedia.org/wikipedia/commons/e/ec/Map_pin_icon.svg" alt="Harita Pin">
-                <h3>İSTANBUL (AVRUPA) / KÜÇÜKÇEKMECE</h3>
-                <p>GÜREL ECZANESİ</p>
-                <p>📞 2126960066</p>
-            </div>
-         <div class="pharmacy">
-                <img src="https://upload.wikimedia.org/wikipedia/commons/e/ec/Map_pin_icon.svg" alt="Harita Pin">
-                <h3>İSTANBUL (AVRUPA) / KÜÇÜKÇEKMECE</h3>
-                <p>GÜREL ECZANESİ</p>
-                <p>📞 2126960066</p>
-            </div>
-         <div class="pharmacy">
-                <img src="https://upload.wikimedia.org/wikipedia/commons/e/ec/Map_pin_icon.svg" alt="Harita Pin">
-                <h3>İSTANBUL (AVRUPA) / KÜÇÜKÇEKMECE</h3>
-                <p>GÜREL ECZANESİ</p>
-                <p>📞 2126960066</p>
-            </div>
-         <div class="pharmacy">
-                <img src="https://upload.wikimedia.org/wikipedia/commons/e/ec/Map_pin_icon.svg" alt="Harita Pin">
-                <h3>İSTANBUL (AVRUPA) / KÜÇÜKÇEKMECE</h3>
-                <p>GÜREL ECZANESİ</p>
-                <p>📞 2126960066</p>
-            </div>
-         <div class="pharmacy">
-                <img src="https://upload.wikimedia.org/wikipedia/commons/e/ec/Map_pin_icon.svg" alt="Harita Pin">
-                <h3>İSTANBUL (AVRUPA) / KÜÇÜKÇEKMECE</h3>
-                <p>GÜREL ECZANESİ</p>
-                <p>📞 2126960066</p>
-            </div>
-         <div class="pharmacy">
-                <img src="https://upload.wikimedia.org/wikipedia/commons/e/ec/Map_pin_icon.svg" alt="Harita Pin">
-                <h3>İSTANBUL (AVRUPA) / KÜÇÜKÇEKMECE</h3>
-                <p>GÜREL ECZANESİ</p>
-                <p>📞 2126960066</p>
-            </div>
-         <div class="pharmacy">
-                <img src="https://upload.wikimedia.org/wikipedia/commons/e/ec/Map_pin_icon.svg" alt="Harita Pin">
-                <h3>İSTANBUL (AVRUPA) / KÜÇÜKÇEKMECE</h3>
-                <p>GÜREL ECZANESİ</p>
-                <p>📞 2126960066</p>
-            </div>
-         <div class="pharmacy">
-                <img src="https://upload.wikimedia.org/wikipedia/commons/e/ec/Map_pin_icon.svg" alt="Harita Pin">
-                <h3>İSTANBUL (AVRUPA) / KÜÇÜKÇEKMECE</h3>
-                <p>GÜREL ECZANESİ</p>
-                <p>📞 2126960066</p>
-            </div>
-         <div class="pharmacy">
-                <img src="https://upload.wikimedia.org/wikipedia/commons/e/ec/Map_pin_icon.svg" alt="Harita Pin">
-                <h3>İSTANBUL (AVRUPA) / KÜÇÜKÇEKMECE</h3>
-                <p>GÜREL ECZANESİ</p>
-                <p>📞 2126960066</p>
-            </div>
-         <div class="pharmacy">
-                <img src="https://upload.wikimedia.org/wikipedia/commons/e/ec/Map_pin_icon.svg" alt="Harita Pin">
-                <h3>İSTANBUL (AVRUPA) / KÜÇÜKÇEKMECE</h3>
-                <p>GÜREL ECZANESİ</p>
-                <p>📞 2126960066</p>
-            </div>
-         <div class="pharmacy">
-                <img src="https://upload.wikimedia.org/wikipedia/commons/e/ec/Map_pin_icon.svg" alt="Harita Pin">
-                <h3>İSTANBUL (AVRUPA) / KÜÇÜKÇEKMECE</h3>
-                <p>GÜREL ECZANESİ</p>
-                <p>📞 2126960066</p>
-            </div>
-         <div class="pharmacy">
-                <img src="https://upload.wikimedia.org/wikipedia/commons/e/ec/Map_pin_icon.svg" alt="Harita Pin">
-                <h3>İSTANBUL (AVRUPA) / KÜÇÜKÇEKMECE</h3>
-                <p>GÜREL ECZANESİ</p>
-                <p>📞 2126960066</p>
-            </div>
-         <div class="pharmacy">
-                <img src="https://upload.wikimedia.org/wikipedia/commons/e/ec/Map_pin_icon.svg" alt="Harita Pin">
-                <h3>İSTANBUL (AVRUPA) / KÜÇÜKÇEKMECE</h3>
-                <p>GÜREL ECZANESİ</p>
-                <p>📞 2126960066</p>
-            </div>
-         <div class="pharmacy">
-                <img src="https://upload.wikimedia.org/wikipedia/commons/e/ec/Map_pin_icon.svg" alt="Harita Pin">
-                <h3>İSTANBUL (AVRUPA) / KÜÇÜKÇEKMECE</h3>
-                <p>GÜREL ECZANESİ</p>
-                <p>📞 2126960066</p>
-            </div>
-         <div class="pharmacy">
-                <img src="https://upload.wikimedia.org/wikipedia/commons/e/ec/Map_pin_icon.svg" alt="Harita Pin">
-                <h3>İSTANBUL (AVRUPA) / KÜÇÜKÇEKMECE</h3>
-                <p>GÜREL ECZANESİ</p>
-                <p>📞 2126960066</p>
-            </div>
-         <div class="pharmacy">
-                <img src="https://upload.wikimedia.org/wikipedia/commons/e/ec/Map_pin_icon.svg" alt="Harita Pin">
-                <h3>İSTANBUL (AVRUPA) / KÜÇÜKÇEKMECE</h3>
-                <p>GÜREL ECZANESİ</p>
-                <p>📞 2126960066</p>
-            </div>
-         <div class="pharmacy">
-                <img src="https://upload.wikimedia.org/wikipedia/commons/e/ec/Map_pin_icon.svg" alt="Harita Pin">
-                <h3>İSTANBUL (AVRUPA) / KÜÇÜKÇEKMECE</h3>
-                <p>GÜREL ECZANESİ</p>
-                <p>📞 2126960066</p>
-            </div>
-         <div class="pharmacy">
-                <img src="https://upload.wikimedia.org/wikipedia/commons/e/ec/Map_pin_icon.svg" alt="Harita Pin">
-                <h3>İSTANBUL (AVRUPA) / KÜÇÜKÇEKMECE</h3>
-                <p>GÜREL ECZANESİ</p>
-                <p>📞 2126960066</p>
-            </div>
-         <div class="pharmacy">
-                <img src="https://upload.wikimedia.org/wikipedia/commons/e/ec/Map_pin_icon.svg" alt="Harita Pin">
-                <h3>İSTANBUL (AVRUPA) / KÜÇÜKÇEKMECE</h3>
-                <p>GÜREL ECZANESİ</p>
-                <p>📞 2126960066</p>
-            </div>
-         <div class="pharmacy">
-                <img src="https://upload.wikimedia.org/wikipedia/commons/e/ec/Map_pin_icon.svg" alt="Harita Pin">
-                <h3>İSTANBUL (AVRUPA) / KÜÇÜKÇEKMECE</h3>
-                <p>GÜREL ECZANESİ</p>
-                <p>📞 2126960066</p>
-            </div>
-         <div class="pharmacy">
-                <img src="https://upload.wikimedia.org/wikipedia/commons/e/ec/Map_pin_icon.svg" alt="Harita Pin">
-                <h3>İSTANBUL (AVRUPA) / KÜÇÜKÇEKMECE</h3>
-                <p>GÜREL ECZANESİ</p>
-                <p>📞 2126960066</p>
-            </div>
-         <div class="pharmacy">
-                <img src="https://upload.wikimedia.org/wikipedia/commons/e/ec/Map_pin_icon.svg" alt="Harita Pin">
-                <h3>İSTANBUL (AVRUPA) / KÜÇÜKÇEKMECE</h3>
-                <p>GÜREL ECZANESİ</p>
-                <p>📞 2126960066</p>
-            </div>
-         <div class="pharmacy">
-                <img src="https://upload.wikimedia.org/wikipedia/commons/e/ec/Map_pin_icon.svg" alt="Harita Pin">
-                <h3>İSTANBUL (AVRUPA) / KÜÇÜKÇEKMECE</h3>
-                <p>GÜREL ECZANESİ</p>
-                <p>📞 2126960066</p>
-            </div>
-         <div class="pharmacy">
-                <img src="https://upload.wikimedia.org/wikipedia/commons/e/ec/Map_pin_icon.svg" alt="Harita Pin">
-                <h3>İSTANBUL (AVRUPA) / KÜÇÜKÇEKMECE</h3>
-                <p>GÜREL ECZANESİ</p>
-                <p>📞 2126960066</p>
-            </div>
-         <div class="pharmacy">
-                <img src="https://upload.wikimedia.org/wikipedia/commons/e/ec/Map_pin_icon.svg" alt="Harita Pin">
-                <h3>İSTANBUL (AVRUPA) / KÜÇÜKÇEKMECE</h3>
-                <p>GÜREL ECZANESİ</p>
-                <p>📞 2126960066</p>
-            </div>
-         <div class="pharmacy">
-                <img src="https://upload.wikimedia.org/wikipedia/commons/e/ec/Map_pin_icon.svg" alt="Harita Pin">
-                <h3>İSTANBUL (AVRUPA) / KÜÇÜKÇEKMECE</h3>
-                <p>GÜREL ECZANESİ</p>
-                <p>📞 2126960066</p>
-            </div>
-         <div class="pharmacy">
-                <img src="https://upload.wikimedia.org/wikipedia/commons/e/ec/Map_pin_icon.svg" alt="Harita Pin">
-                <h3>İSTANBUL (AVRUPA) / KÜÇÜKÇEKMECE</h3>
-                <p>GÜREL ECZANESİ</p>
-                <p>📞 2126960066</p>
-            </div>
-         <div class="pharmacy">
-                <img src="https://upload.wikimedia.org/wikipedia/commons/e/ec/Map_pin_icon.svg" alt="Harita Pin">
-                <h3>İSTANBUL (AVRUPA) / KÜÇÜKÇEKMECE</h3>
-                <p>GÜREL ECZANESİ</p>
-                <p>📞 2126960066</p>
-            </div>
-         <div class="pharmacy">
-                <img src="https://upload.wikimedia.org/wikipedia/commons/e/ec/Map_pin_icon.svg" alt="Harita Pin">
-                <h3>İSTANBUL (AVRUPA) / KÜÇÜKÇEKMECE</h3>
-                <p>GÜREL ECZANESİ</p>
-                <p>📞 2126960066</p>
-            </div>
-         <div class="pharmacy">
-                <img src="https://upload.wikimedia.org/wikipedia/commons/e/ec/Map_pin_icon.svg" alt="Harita Pin">
-                <h3>İSTANBUL (AVRUPA) / KÜÇÜKÇEKMECE</h3>
-                <p>GÜREL ECZANESİ</p>
-                <p>📞 2126960066</p>
-            </div>
-         <div class="pharmacy">
-                <img src="https://upload.wikimedia.org/wikipedia/commons/e/ec/Map_pin_icon.svg" alt="Harita Pin">
-                <h3>İSTANBUL (AVRUPA) / KÜÇÜKÇEKMECE</h3>
-                <p>GÜREL ECZANESİ</p>
-                <p>📞 2126960066</p>
-            </div>
-         <div class="pharmacy">
-                <img src="https://upload.wikimedia.org/wikipedia/commons/e/ec/Map_pin_icon.svg" alt="Harita Pin">
-                <h3>İSTANBUL (AVRUPA) / KÜÇÜKÇEKMECE</h3>
-                <p>GÜREL ECZANESİ</p>
-                <p>📞 2126960066</p>
-            </div>
-         <div class="pharmacy">
-                <img src="https://upload.wikimedia.org/wikipedia/commons/e/ec/Map_pin_icon.svg" alt="Harita Pin">
-                <h3>İSTANBUL (AVRUPA) / KÜÇÜKÇEKMECE</h3>
-                <p>GÜREL ECZANESİ</p>
-                <p>📞 2126960066</p>
-            </div>
-         <div class="pharmacy">
-                <img src="https://upload.wikimedia.org/wikipedia/commons/e/ec/Map_pin_icon.svg" alt="Harita Pin">
-                <h3>İSTANBUL (AVRUPA) / KÜÇÜKÇEKMECE</h3>
-                <p>GÜREL ECZANESİ</p>
-                <p>📞 2126960066</p>
-            </div>
-         <div class="pharmacy">
-                <img src="https://upload.wikimedia.org/wikipedia/commons/e/ec/Map_pin_icon.svg" alt="Harita Pin">
-                <h3>İSTANBUL (AVRUPA) / KÜÇÜKÇEKMECE</h3>
-                <p>GÜREL ECZANESİ</p>
-                <p>📞 2126960066</p>
-            </div>
-         <div class="pharmacy">
-                <img src="https://upload.wikimedia.org/wikipedia/commons/e/ec/Map_pin_icon.svg" alt="Harita Pin">
-                <h3>İSTANBUL (AVRUPA) / KÜÇÜKÇEKMECE</h3>
-                <p>GÜREL ECZANESİ</p>
-                <p>📞 2126960066</p>
-            </div>
-         <div class="pharmacy">
-                <img src="https://upload.wikimedia.org/wikipedia/commons/e/ec/Map_pin_icon.svg" alt="Harita Pin">
-                <h3>İSTANBUL (AVRUPA) / KÜÇÜKÇEKMECE</h3>
-                <p>GÜREL ECZANESİ</p>
-                <p>📞 2126960066</p>
-            </div>
-         <div class="pharmacy">
-                <img src="https://upload.wikimedia.org/wikipedia/commons/e/ec/Map_pin_icon.svg" alt="Harita Pin">
-                <h3>İSTANBUL (AVRUPA) / KÜÇÜKÇEKMECE</h3>
-                <p>GÜREL ECZANESİ</p>
-                <p>📞 2126960066</p>
-            </div>
-         <div class="pharmacy">
-                <img src="https://upload.wikimedia.org/wikipedia/commons/e/ec/Map_pin_icon.svg" alt="Harita Pin">
-                <h3>İSTANBUL (AVRUPA) / KÜÇÜKÇEKMECE</h3>
-                <p>GÜREL ECZANESİ</p>
-                <p>📞 2126960066</p>
-            </div>
-            <!-- Buraya tüm 56 eczane eklendi -->
+        <div id="pharmacyList" class="pharmacy-list">
+            <!-- Eczane listesi burada -->
         </div>
     </div>
+
+    <script>
+        const pharmacies = [
+            { il: "İstanbul", ilce: "Fatih", ad: "Okyanus Eczanesi", tel: "2125297960", map: "https://goo.gl/maps/X1y" },
+            { il: "İstanbul", ilce: "Kadıköy", ad: "İntepe Eczanesi", tel: "2164450726", map: "https://goo.gl/maps/Y2x" },
+            { il: "İzmir", ilce: "Güzelbahçe", ad: "Mayıs Eczanesi", tel: "5522559693", map: "https://goo.gl/maps/Z3w" },
+            { il: "Ankara", ilce: "Çankaya", ad: "Güven Eczanesi", tel: "3124412233", map: "https://goo.gl/maps/A4z" }
+        ];
+        
+        function renderPharmacies(list) {
+            const pharmacyList = document.getElementById("pharmacyList");
+            pharmacyList.innerHTML = list.map(pharmacy => `
+                <div class="pharmacy">
+                    <img src="https://upload.wikimedia.org/wikipedia/commons/e/ec/Map_pin_icon.svg" alt="Harita Pin">
+                    <h3>${pharmacy.il} / ${pharmacy.ilce}</h3>
+                    <p>${pharmacy.ad}</p>
+                    <p>📞 ${pharmacy.tel}</p>
+                    <a href="${pharmacy.map}" target="_blank" class="map-link">Haritada Gör</a>
+                </div>
+            `).join('');
+        }
+        
+        function filterPharmacies() {
+            const city = document.getElementById("cityFilter").value.toLowerCase();
+            const searchQuery = document.getElementById("searchBox").value.toLowerCase();
+            
+            const filtered = pharmacies.filter(p =>
+                (city === "" || p.il.toLowerCase().includes(city)) &&
+                (searchQuery === "" || p.ad.toLowerCase().includes(searchQuery))
+            );
+            renderPharmacies(filtered);
+        }
+        
+        document.getElementById("searchBox").addEventListener("input", filterPharmacies);
+        document.getElementById("cityFilter").addEventListener("change", filterPharmacies);
+        
+        renderPharmacies(pharmacies);
+    </script>
 </body>
 </html>
