@@ -12,7 +12,7 @@
             padding: 20px;
         }
         .container {
-            max-width: 900px;
+            max-width: 1200px;
             margin: auto;
             background: white;
             padding: 20px;
@@ -21,60 +21,103 @@
         }
         .title {
             text-align: center;
-            font-size: 24px;
+            font-size: 28px;
             font-weight: bold;
             margin-bottom: 20px;
         }
-        .pharmacy-list {
+        .search-bar {
             display: flex;
-            flex-wrap: wrap;
+            justify-content: center;
+            gap: 10px;
+            margin-bottom: 20px;
+        }
+        .search-bar select, .search-bar input {
+            padding: 10px;
+            border-radius: 5px;
+            border: 1px solid #ccc;
+            width: 200px;
+        }
+        .search-bar button {
+            background: #0056b3;
+            color: white;
+            border: none;
+            padding: 10px 15px;
+            border-radius: 5px;
+            cursor: pointer;
+        }
+        .pharmacy-list {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
             gap: 20px;
         }
         .pharmacy {
-            background: #fff;
+            background: white;
             padding: 15px;
             border-radius: 6px;
             box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
-            width: calc(50% - 10px);
+            text-align: center;
+            transition: 0.3s;
+        }
+        .pharmacy:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
+        }
+        .pharmacy img {
+            width: 50px;
+            height: 50px;
+            margin-bottom: 10px;
         }
         .pharmacy h3 {
-            margin: 0 0 10px 0;
-            font-size: 18px;
+            margin: 5px 0;
+            font-size: 16px;
+            background: #003366;
+            color: white;
+            padding: 5px;
+            border-radius: 3px;
         }
         .pharmacy p {
             margin: 5px 0;
             font-size: 14px;
         }
         @media (max-width: 600px) {
-            .pharmacy {
-                width: 100%;
+            .pharmacy-list {
+                grid-template-columns: 1fr;
             }
         }
     </style>
 </head>
 <body>
     <div class="container">
-        <div class="title">Eczane Listesi</div>
+        <div class="title">Eczaneler</div>
+        <div class="search-bar">
+            <select>
+                <option value="">Şehir Seç</option>
+                <option value="Adana">Adana</option>
+                <option value="İstanbul">İstanbul</option>
+            </select>
+            <input type="text" placeholder="Eczane Ara...">
+            <button>Ara</button>
+        </div>
         <div class="pharmacy-list">
             <div class="pharmacy">
-                <h3>Eczane 1</h3>
-                <p>Adres: Örnek Mah. 123. Sok. No: 4, İstanbul</p>
-                <p>Telefon: 0212 123 45 67</p>
+                <img src="https://upload.wikimedia.org/wikipedia/commons/e/ec/Map_pin_icon.svg" alt="Harita Pin">
+                <h3>Adana / Aladağ</h3>
+                <p>Akören Eczanesi</p>
             </div>
             <div class="pharmacy">
-                <h3>Eczane 2</h3>
-                <p>Adres: Test Cad. No: 56, Ankara</p>
-                <p>Telefon: 0312 987 65 43</p>
+                <img src="https://upload.wikimedia.org/wikipedia/commons/e/ec/Map_pin_icon.svg" alt="Harita Pin">
+                <h3>Adana / Çukurova</h3>
+                <p>Günser Eczanesi</p>
             </div>
             <div class="pharmacy">
-                <h3>Eczane 3</h3>
-                <p>Adres: Deneme Sk. No: 89, İzmir</p>
-                <p>Telefon: 0232 456 78 90</p>
+                <img src="https://upload.wikimedia.org/wikipedia/commons/e/ec/Map_pin_icon.svg" alt="Harita Pin">
+                <h3>Adana / Çukurova</h3>
+                <p>Alataş Eczanesi</p>
             </div>
             <div class="pharmacy">
-                <h3>Eczane 4</h3>
-                <p>Adres: Sahil Yolu No: 12, Antalya</p>
-                <p>Telefon: 0242 321 67 89</p>
+                <img src="https://upload.wikimedia.org/wikipedia/commons/e/ec/Map_pin_icon.svg" alt="Harita Pin">
+                <h3>Adana / Kozan</h3>
+                <p>Nevin Eczanesi</p>
             </div>
         </div>
     </div>
