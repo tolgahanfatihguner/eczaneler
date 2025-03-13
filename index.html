@@ -215,7 +215,7 @@
 
         function renderPharmacies(list) {
             const pharmacyList = document.getElementById("pharmacyList");
-            pharmacyList.innerHTML = list.map(pharmacy => 
+            pharmacyList.innerHTML = list.map(pharmacy => `
                 <div class="pharmacy">
                     <img src="https://raw.githubusercontent.com/tolgahanfatihguner/images/refs/heads/main/eczane-logo-png_seeklogo-536923.png" alt="Eczane Logo">
                     <h3>${pharmacy.il} / ${pharmacy.ilce}</h3>
@@ -223,7 +223,7 @@
                     <p>📞 ${pharmacy.tel}</p>
                     <a href="${pharmacy.map}" target="_blank" class="map-link">Haritada Gör</a>
                 </div>
-            ).join('');
+            `).join('');
         }
 
         renderPharmacies(pharmacies);
