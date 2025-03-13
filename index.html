@@ -130,14 +130,13 @@
             Ürünlerimizi yetkili eczanelerimizden güvenle satın alabilirsiniz. Size en yakın eczaneyi bulmak için aşağıdaki filtreleri kullanabilirsiniz.
         </div>
         <div class="search-bar">
-            <select id="cityFilter">
+            <select id="cityFilter" onchange="filterPharmacies()">
                 <option value="">Şehir Seç</option>
                 <option value="İstanbul">İstanbul</option>
                 <option value="İzmir">İzmir</option>
                 <option value="Ankara">Ankara</option>
             </select>
-            <input type="text" id="searchBox" placeholder="Eczane Ara...">
-            <button onclick="filterPharmacies()">Ara</button>
+            <input type="text" id="searchBox" placeholder="Eczane Ara..." oninput="filterPharmacies()">
         </div>
         <div id="pharmacyList" class="pharmacy-list"></div>
     </div>
@@ -150,11 +149,22 @@
             { il: "Ankara", ilce: "Çankaya", ad: "Güven Eczanesi", tel: "3124412233", map: "https://goo.gl/maps/A4z" }
         ];
 
+        function filterPharmacies() {
+            const city = document.getElementById("cityFilter").value.toLowerCase();
+            const searchQuery = document.getElementById("searchBox").value.toLowerCase();
+            
+            const filtered = pharmacies.filter(p =>
+                (city === "" || p.il.toLowerCase() === city) &&
+                (searchQuery === "" || p.ad.toLowerCase().includes(searchQuery))
+            );
+            renderPharmacies(filtered);
+        }
+
         function renderPharmacies(list) {
             const pharmacyList = document.getElementById("pharmacyList");
             pharmacyList.innerHTML = list.map(pharmacy => `
                 <div class="pharmacy">
-                    <img src="https://raw.githubusercontent.com/tolgahanfatihguner/images/refs/heads/main/eczane-logo-png_seeklogo-536923.png" alt="Harita Pin">
+                    <img src="https://raw.githubusercontent.com/tolgahanfatihguner/images/refs/heads/main/eczane-logo-png_seeklogo-536923.png" alt="Eczane Logo">
                     <h3>${pharmacy.il} / ${pharmacy.ilce}</h3>
                     <p>${pharmacy.ad}</p>
                     <p>📞 ${pharmacy.tel}</p>
