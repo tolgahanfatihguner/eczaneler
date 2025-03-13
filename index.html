@@ -64,7 +64,7 @@
     <script>
         const pharmacies = [ 
           
-          il: "İstanbul (Avrupa)", ilce: "Şişli", ad: "Selen Eczanesi", tel: "2122155800", map: "#" },
+    { il: "İstanbul (Avrupa)", ilce: "Şişli", ad: "Selen Eczanesi", tel: "2122155800", map: "#" },
     { il: "İstanbul (Anadolu)", ilce: "Kartal", ad: "Marin Kartal Eczanesi", tel: "2164885419", map: "#" },
     { il: "İstanbul (Anadolu)", ilce: "Kadıköy", ad: "Şeker Eczanesi", tel: "2163698198", map: "#" },
     { il: "İstanbul (Anadolu)", ilce: "Ataşehir", ad: "Melissa Eczanesi", tel: "2164554488", map: "#" },
@@ -118,9 +118,7 @@
     { il: "Kırklareli", ilce: "Merkez", ad: "Meydan Eczanesi", tel: "2882143334", map: "#" },
     { il: "Kocaeli", ilce: "Gölcük", ad: "Deniz Eczanesi", tel: "2624264280", map: "#" },
     { il: "Kocaeli", ilce: "Körfez", ad: "Filiz Eczanesi", tel: "2625267090", map: "#" }
-                          
-                           
-                           ];
+];
         function getUniqueCities() {
             return [...new Set(pharmacies.map(p => p.il.split(' ')[0]))];
         }
