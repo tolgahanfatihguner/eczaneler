@@ -139,9 +139,6 @@
                 <option value="Kırklareli">Kırklareli</option>
                 <option value="Kocaeli">Kocaeli</option>
             </select>
-            <select id="districtFilter" onchange="filterPharmacies()">
-                <option value="">İlçe Seç</option>
-            </select>
             <input type="text" id="searchBox" placeholder="Eczane Ara..." oninput="filterPharmacies()">
         </div>
         <div id="pharmacyList" class="pharmacy-list"></div>
@@ -205,34 +202,31 @@
     { il: "Kocaeli", ilce: "Körfez", ad: "Filiz Eczanesi", tel: "2625267090", map: "https://maps.app.goo.gl/18vQL6E1tKZZZNzs6" }
 ];
 
-        function updateDistricts() {
-            const city = document.getElementById("cityFilter").value;
-            const districtFilter = document.getElementById("districtFilter");
-            districtFilter.innerHTML = '<option value="">İlçe Seç</option>';
-            
-            if (city) {
-                const districts = [...new Set(pharmacies.filter(p => p.il === city).map(p => p.ilce))];
-                districts.forEach(district => {
-                    const option = document.createElement("option");
-                    option.value = district;
-                    option.textContent = district;
-                    districtFilter.appendChild(option);
-                });
-            }
-        }
-        
         function filterPharmacies() {
-            const city = document.getElementById("cityFilter").value;
-            const district = document.getElementById("districtFilter").value;
+            const city = document.getElementById("cityFilter").value.toLowerCase();
             const searchQuery = document.getElementById("searchBox").value.toLowerCase();
             
             const filtered = pharmacies.filter(p =>
-                (!city || p.il === city) &&
-                (!district || p.ilce === district) &&
-                (!searchQuery || p.ad.toLowerCase().includes(searchQuery))
+                (city === "" || p.il.toLowerCase() === city) &&
+                (searchQuery === "" || p.ad.toLowerCase().includes(searchQuery))
             );
             renderPharmacies(filtered);
         }
+
+        function renderPharmacies(list) {
+            const pharmacyList = document.getElementById("pharmacyList");
+            pharmacyList.innerHTML = list.map(pharmacy => 
+                <div class="pharmacy">
+                    <img src="https://raw.githubusercontent.com/tolgahanfatihguner/images/refs/heads/main/eczane-logo-png_seeklogo-536923.png" alt="Eczane Logo">
+                    <h3>${pharmacy.il} / ${pharmacy.ilce}</h3>
+                    <p>${pharmacy.ad}</p>
+                    <p>📞 ${pharmacy.tel}</p>
+                    <a href="${pharmacy.map}" target="_blank" class="map-link">Haritada Gör</a>
+                </div>
+            ).join('');
+        }
+
+        renderPharmacies(pharmacies);
     </script>
 </body>
 </html>
