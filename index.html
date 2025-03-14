@@ -130,7 +130,7 @@
             Ürünlerimizi yetkili eczanelerimizden güvenle satın alabilirsiniz. Size en yakın eczaneyi bulmak için aşağıdaki filtreleri kullanabilirsiniz.
         </div>
         <div class="search-bar">
-            <select id="cityFilter" onchange="updateDistricts(); filterPharmacies()">
+           <select id="cityFilter" onchange="updateDistricts(); filterPharmacies()">
                 <option value="">Şehir Seç</option>
                 <option value="İstanbul (Avrupa)">İstanbul (Avrupa)</option>
                 <option value="İstanbul (Anadolu)">İstanbul (Anadolu)</option>
@@ -205,16 +205,19 @@
     { il: "Kocaeli", ilce: "Körfez", ad: "Filiz Eczanesi", tel: "2625267090", map: "https://maps.app.goo.gl/18vQL6E1tKZZZNzs6" }
 ];
 
-        function filterPharmacies() {
-            const city = document.getElementById("cityFilter").value.toLowerCase();
-            const searchQuery = document.getElementById("searchBox").value.toLowerCase();
-            
-            const filtered = pharmacies.filter(p =>
-                (city === "" || p.il.toLowerCase() === city) &&
-                (searchQuery === "" || p.ad.toLowerCase().includes(searchQuery))
-            );
-            renderPharmacies(filtered);
-        }
+function filterPharmacies() {
+    const city = document.getElementById("cityFilter").value.toLowerCase();
+    const district = document.getElementById("districtFilter").value.toLowerCase(); // İlçe filtresi eklendi
+    const searchQuery = document.getElementById("searchBox").value.toLowerCase();
+    
+    const filtered = pharmacies.filter(p =>
+        (city === "" || p.il.toLowerCase() === city) &&
+        (district === "" || p.ilce.toLowerCase() === district) && // İlçeye göre filtreleme eklendi
+        (searchQuery === "" || p.ad.toLowerCase().includes(searchQuery))
+    );
+    renderPharmacies(filtered);
+}
+
 
         function renderPharmacies(list) {
             const pharmacyList = document.getElementById("pharmacyList");
